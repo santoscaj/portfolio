@@ -1,5 +1,5 @@
 import React from 'react'
-import {TopBar, SocialMediaLinks, HeaderCenter, ProfilePicture, Logo } from './HeaderComponents'
+import {TopBar, SocialMediaLinks, HeaderCenter, ProfilePicture, Logo } from './dependencies/HeaderComponents'
 
 
 const Header = ()=>(

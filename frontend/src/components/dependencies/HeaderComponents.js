@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import {FaGithub, FaLinkedin} from 'react-icons/fa'
-import profilePic from '../images/profile.jpg'
-import logoName from '../images/profile-name-black.svg'
+import profilePic from '../../images/profile.jpg'
+import logoName from '../../images/profile-name-black.svg'
 
 export const TopBar = styled.div`
   display: flex;
@@ -21,6 +21,7 @@ const SocialMediaIcon = styled.a`
   height: 40px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   font-size: 16px;
   border: 1px solid var(--header-border-color);
@@ -60,13 +61,16 @@ export const HeaderCenter = styled.div`
     padding: 10px
   }
   `
-
 const LogoName = styled.img`
   max-width: 500px;
   margin: 30px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  display: block;
+  margin: auto;
+  padding: 20px;
+  max-height: 280px;
   @media(max-width: 300px){
     margin: 0
   }

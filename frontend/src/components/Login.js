@@ -1,9 +1,9 @@
 import React from 'react'
-import SectionTitle from './SectionTitle'
-import styled from 'styled-components'
+// import SectionTitle from './SectionTitle'
+// import styled from 'styled-components'
 
 
-const Login = ()=>(
+const Login = ({setToken})=>(
   <div>
     <h1>login page</h1>
     <form>

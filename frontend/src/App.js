@@ -3,7 +3,7 @@ import React,{ useState } from 'react'
 import './App.css';
 import Home from './components/Home';
 import Admin from './components/Admin';
-
+import Login from './components/Login';
 
 import {
   BrowserRouter as Router,
@@ -13,16 +13,16 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
 
   return (
     <div className="App">
       <Router>
         <div>
-
         <Switch>
           <Route exact path="/admin">
-            <Admin token={token} setToken={setToken} />
+            {token? <Admin token={token} /> :
+            <Login setToken={setToken} /> }
           </Route>
           <Route path="/">
             <Home/>
