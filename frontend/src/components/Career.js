@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SectionTitle from './SectionTitle'
+import {SectionTitle} from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
 import { useFetch } from '../utils/API'
 import CareerTab from './dependencies/CareerComponents'
@@ -11,7 +11,6 @@ const [careers, setCareer] = useState([])
 useFetch('http://localhost:8000/careers')
   .then(answer=>{
     setCareer(answer.data)
-    console.log(careers)
   }).catch(e=>{
     console.log(e)
   })

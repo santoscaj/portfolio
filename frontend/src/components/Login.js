@@ -1,7 +1,4 @@
 import React from 'react'
-// import SectionTitle from './SectionTitle'
-// import styled from 'styled-components'
-
 
 const Login = ({setToken})=>(
   <div>
