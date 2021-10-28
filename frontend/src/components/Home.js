@@ -3,6 +3,7 @@ import Header from './Header'
 import About from './About'
 import Career from './Career'
 import Education from './Education'
+import Projects from './Projects'
 
 const Home = ()=>(
   <>
@@ -10,6 +11,7 @@ const Home = ()=>(
     <About />
     <Career />
     <Education />
+    <Projects />
   </>
 )
 

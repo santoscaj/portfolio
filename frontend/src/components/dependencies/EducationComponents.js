@@ -1,41 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
-import { VerticalBlock, HorizontalBlock } from './GeneralComponents'
+import { VerticalBlock, HorizontalBlock, BoldHeader1, ItalicHeader2, Header3, Header3Light, InfoArea } from './GeneralComponents'
 
 function getTime(endDate, startDate){
   let end = moment.unix((endDate))
   return end.format('MMMM YYYY');
 }
 
-const Institute = styled.div`
-  color: black;
-  font-size: 18px;
-  font-weight: 600
-`
-
-const Time = styled.div`
-  color: darkgray;
-  font-size: 16px;
-  font-style: italic
-`
-
-const WorkPlace = styled.div`
-  color: black;
+const Institute =  BoldHeader1
+const Time = ItalicHeader2
+const SmallDiv = styled.div`
   font-size: 14px;
-`
-
-const Location = styled.div`
-  color: darkgray;
-  font-size: 14px;
-`
-
-const InfoArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 70px
+  font-color: darkgray
 `
 
 export const CertificationTab = ({certification})=>(
@@ -50,7 +27,6 @@ export const CertificationTab = ({certification})=>(
   </VerticalBlock>
 )
 
-
 export const EducationTab = ({education})=>(
   <VerticalBlock>
   <HorizontalBlock>
@@ -60,6 +36,7 @@ export const EducationTab = ({education})=>(
   <InfoArea>
     <div>{education.degree}</div>
     <div>{education.field}</div>
+    <SmallDiv>( {education.gpa} GPA ) </SmallDiv>
   </InfoArea>
   </VerticalBlock>
 )

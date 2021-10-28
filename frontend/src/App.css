@@ -11,6 +11,8 @@
   --header-hover-background-color:#003459 ;
   --header-hover-font-color: #E5E5E5;
 
+  --block-border-color: transparent;
+  --block-border-color-hover: lightgray;
 
   min-width: 150px;
 }

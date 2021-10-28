@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 
 export const useFetch = async (url) => {
   const [data, setData ] = useState(null)
@@ -35,7 +35,7 @@ export const useFetch = async (url) => {
         let data = await response.json()
         setData(data)
       }catch(err){
-        console.log(err)
+        console.error(err)
         setError(err)
         setData(null)
       }

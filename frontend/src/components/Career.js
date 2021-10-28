@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {SectionTitle} from './dependencies/GeneralComponents'
+import {IndividualBlock, GroupArea } from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
 import { useFetch } from '../utils/API'
 import CareerTab from './dependencies/CareerComponents'
@@ -15,13 +15,15 @@ useFetch('http://localhost:8000/careers')
     console.log(e)
   })
 
+let careerArray = careers && Array.from(careers, career=>(
+  <IndividualBlock key={career.id}>
+    <CareerTab career={career} />
+  </IndividualBlock>
+))
+
 return (
-  <>
-    <SectionTitle title="Careers" />
-    {careers && Array.from(careers ,career=>(
-      <CareerTab career={career} key={career.id} />
-    ))}
-  </>
+  <GroupArea title="Career" components={careerArray}/>
 )}
+
 
 export default Career
