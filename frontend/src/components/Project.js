@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { IndividualBlock, GroupArea} from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
-import { useFetch } from '../utils/API'
+import { useGet } from '../utils/API'
 import {ProjectTab} from './dependencies/ProjectComponents'
 
 
 const Career = ()=>{
 const [projects, setProjects] = useState([])
 
-useFetch('http://localhost:8000/projects')
+useGet('http://localhost:8000/projects')
   .then(answer=>{
     setProjects(answer.data)
   }).catch(e=>{

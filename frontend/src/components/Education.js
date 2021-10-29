@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IndividualBlock, GroupArea} from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
-import { useFetch } from '../utils/API'
+import { useGet } from '../utils/API'
 import {EducationTab, CertificationTab} from './dependencies/EducationComponents'
 
 
@@ -9,17 +9,16 @@ const Career = ()=>{
 const [educations, setEducation] = useState([])
 const [certifications, setCertifications] = useState([])
 
-useFetch('http://localhost:8000/educations')
+useGet('http://localhost:8000/educations')
   .then(answer=>{
     setEducation(answer.data)
   }).catch(e=>{
     console.error(e)
   })
   
-useFetch('http://localhost:8000/certifications')
+useGet('http://localhost:8000/certifications')
 .then(answer=>{
   setCertifications(answer.data)
-  console.log(answer.data)
   }).catch(e=>{
     console.error(e)
   })
