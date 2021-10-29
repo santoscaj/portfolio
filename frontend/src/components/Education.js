@@ -24,13 +24,13 @@ useGet('http://localhost:8000/certifications')
   })
 
   let educationComponents = educations && Array.from(educations, education=>(
-    <IndividualBlock key={education.id} >
+    <IndividualBlock key={education._id} >
       <EducationTab education={education} />
     </IndividualBlock> || []
   ))
   
   let certificationComponents = certifications && Array.from(certifications, certification=>(
-    <IndividualBlock key={certification.id} >
+    <IndividualBlock key={certification._id} >
       <CertificationTab certification={certification} />
     </IndividualBlock>  
   ))

@@ -8,6 +8,7 @@ export const useGet = async (url) => {
   const abortController = new AbortController()
   
   useEffect( ()=>{
+    
     (async ()=>{
       setError(null)
       setLoading(true)
@@ -17,7 +18,7 @@ export const useGet = async (url) => {
         let data = await response.json()
         setData(data)
       }catch(err){
-        if(err.name!='AbortError'){
+        if(err.name!=='AbortError'){
           console.error(err)
           setError(err)
           setData(null)

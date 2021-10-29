@@ -1,23 +1,41 @@
-import React,{useState} from 'react'
+import React,{ useEffect} from 'react'
 import ProjectAdmin from './ProjectAdmin'
 import EducationAdmin from './EducationAdmin'
 import CareerAdmin from './CareerAdmin'
+import CertificationAdmin from './CertificationAdmin'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom';
-
+import {
+  // BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+  // Link,
+  // Redirect,
+  useHistory,
+  // useLocation
+} from "react-router-dom";
 
 const FlexUL = styled.ul`
 display: flex;
 justify-content: space-evenly;
 align-items: center`
 
+const AdminBtn = styled.button`
+background: white;
+padding: 5px;
+border: 1px solid black;
+width: 200px;
+cursor: pointer
+`
+
+
 const AdminNavBar = ({pages, onClickFunc})=>(
   <div>
     <nav>
       <FlexUL>
         {Array.from(pages, page=>(
-          <li key={page} >
-          <button id={page} onClick={onClickFunc} to={"/admin/"+page}>{page}</button>
+          <li style={{ listStyleType: 'None'}} key={page} >
+          <AdminBtn id={page} onClick={onClickFunc} to={"/admin/"+page}>{page}</AdminBtn>
         </li>  
         ))}
       </FlexUL>
@@ -27,17 +45,31 @@ const AdminNavBar = ({pages, onClickFunc})=>(
 
 const Admin = ({token, setToken})=>{
   let {category} = useParams()
-  const pages = [  'career', 'projects', 'education' ]  
-  const [page, setPage] = useState(category)
+  const pages = [  'career', 'projects', 'education', 'certification' ]  
+  const history = useHistory()
 
   const changePage = event=>{
-    setPage(event.target.id)
+    history.push('/admin/'+event.target.id)
   }
+  useEffect(()=>{},[category])
 
- return (<>
-    <p > admin page </p>
+  return (<>
+    <h1 > Admin Page : {category} </h1>
     <AdminNavBar pages={pages} onClickFunc={changePage} />
-    {page == 'career'?<CareerAdmin /> : page=='education' ?   <EducationAdmin /> : <ProjectAdmin />}
+    <Switch>
+      <Route path="/admin/career">
+        <CareerAdmin/>
+      </Route>
+      <Route path="/admin/certification">
+        <CertificationAdmin/>
+      </Route>
+      <Route path="/admin/education">
+        <EducationAdmin/>
+      </Route>
+      <Route path="/admin/projects">
+        <ProjectAdmin/>
+      </Route>
+    </Switch>
   </>
   )
 }

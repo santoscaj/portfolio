@@ -7,9 +7,9 @@ import Project from './Project'
 
 const Home = ()=>(
   <>
-    {/* <Header />
+    <Header />
     <About />
-    <Career /> */}
+    <Career />
     <Education />
     <Project />
   </>

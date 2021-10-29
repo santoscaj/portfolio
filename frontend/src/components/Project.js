@@ -17,7 +17,7 @@ useGet('http://localhost:8000/projects')
   
 
 let projectArray = projects && Array.from(projects, project=>(
-  <IndividualBlock key={project.id} >
+  <IndividualBlock key={project._id} >
     <ProjectTab project={project} />
   </IndividualBlock>
 ))
