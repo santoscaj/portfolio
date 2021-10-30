@@ -61,6 +61,9 @@ const CareerBlock = ({career})=>{
   const changeTemporaryCareer = (property, value)=>{
     setTempCareer(prev=> ({...prev, [property]: value}))
   }
+  const discardFunction = ()=>{console.log('discarding')}
+  const saveFunction =()=>{console.log('saving')}
+  const deleteFunction =()=>{console.log('deleting')}
   return (
     <VerticalIndividualBlock>
       <HorizontalGroup property="id" value={tempCareer._id} disabled={true} onChange={(e)=>changeTemporaryCareer( '_id', e.target.value)} />
@@ -71,7 +74,7 @@ const CareerBlock = ({career})=>{
       <HorizontalGroup property="endDate" value={tempCareer.endDate} onChange={e=>changeTemporaryCareer( 'endDate', e.target.value)} />
       <Responsabilities responsabilities={tempCareer.responsabilities} onChange={(newArray)=>changeTemporaryCareer('responsabilities', newArray)}/>
       <Skills skills={tempCareer.skills} onChange={(newSkill)=>changeTemporaryCareer('skills', newSkill)} />
-      <ActionButtons/>
+      <ActionButtons onDiscard={discardFunction} onSave={saveFunction} onDelete={deleteFunction}  />
     </VerticalIndividualBlock>
   )
 }

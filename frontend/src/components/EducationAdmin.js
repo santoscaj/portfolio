@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useGet } from '../utils/API'
-import {ActionButtons,HorizontalGroup, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
+import {ActionButtons,HorizontalGroup, VerticalIndividualBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
 
 const EducationBlock = ({education})=>{
@@ -8,9 +8,11 @@ const EducationBlock = ({education})=>{
   const changeTemporaryEducation = (property, value)=>{
     setTempEducation(prev=> ({...prev, [property]: value}))
   }
-  
+  const discardFunction = ()=>{console.log('discarding')}
+  const saveFunction =()=>{console.log('saving')}
+  const deleteFunction =()=>{console.log('deleting')}
   return (
-    <VerticalBlock>
+    <VerticalIndividualBlock>
       <HorizontalGroup property="id" value={tempEducation._id} onChange={e=>changeTemporaryEducation('id',e.target.value)} disabled={true} />
       <HorizontalGroup property="institution" value={tempEducation.institution} onChange={e=>changeTemporaryEducation('institution',e.target.value)} />
       <HorizontalGroup property="order" value={tempEducation.order} onChange={e=>changeTemporaryEducation('order',e.target.value)} />
@@ -21,8 +23,8 @@ const EducationBlock = ({education})=>{
       <HorizontalGroup property="startDate" value={tempEducation.startDate} onChange={e=>changeTemporaryEducation('startDate',e.target.value)} />
       <HorizontalGroup property="endDate" value={tempEducation.endDate} onChange={e=>changeTemporaryEducation('endDate',e.target.value)} />
       <HorizontalGroup property="link" value={tempEducation.link} onChange={e=>changeTemporaryEducation('link',e.target.value)} />
-      <ActionButtons/>
-    </VerticalBlock>
+      <ActionButtons onDiscard={discardFunction} onSave={saveFunction} onDelete={deleteFunction}  />
+    </VerticalIndividualBlock>
   )
 }
 

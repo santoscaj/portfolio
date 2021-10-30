@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useGet } from '../utils/API'
-import {ActionButtons, Skills, HorizontalGroup ,HorizontalGroupTextArea, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
+import {ActionButtons, Skills,VerticalIndividualBlock,  HorizontalGroup ,HorizontalGroupTextArea, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
 const ProjectBlock = ({project})=>{
   
@@ -8,8 +8,11 @@ const ProjectBlock = ({project})=>{
   const changeTemporaryProject = (property, value)=>{
     setTempProject(prev=> ({...prev, [property]: value}))
   }
+  const discardFunction = ()=>{console.log('discarding')}
+  const saveFunction =()=>{console.log('saving')}
+  const deleteFunction =()=>{console.log('deleting')}
   return (
-    <VerticalBlock>
+    <VerticalIndividualBlock>
       <HorizontalGroup property="id" value={tempProject._id} onChange={e=>changeTemporaryProject('id',e.target.value)}  disabled={true} />
       <HorizontalGroup property="order" value={tempProject.order} onChange={e=>changeTemporaryProject('order',e.target.value)} />
       <HorizontalGroup property="name" value={tempProject.name} onChange={e=>changeTemporaryProject('name',e.target.value)} />
@@ -19,11 +22,10 @@ const ProjectBlock = ({project})=>{
       <HorizontalGroup property="githubLink" value={tempProject.githubLink} onChange={e=>changeTemporaryProject('githubLink',e.target.value)} />
       <HorizontalGroupTextArea property="fullDescription" value={tempProject.fullDescription} onChange={e=>changeTemporaryProject('fullDescription',e.target.value)} />
       <Skills skills={tempProject.skills} onChange={newSkill=>changeTemporaryProject('skills', newSkill)}/>
-      <ActionButtons/>
-    </VerticalBlock>
+      <ActionButtons onDiscard={discardFunction} onSave={saveFunction} onDelete={deleteFunction}  />
+    </VerticalIndividualBlock>
   )
 }
-
 
 const ProjectAdmin = ()=>{
   const [projects, setProject ] = useState(null)
@@ -37,12 +39,9 @@ const ProjectAdmin = ()=>{
 
   return (
     <VerticalMainBlock>  
-      {
-      projects && Array.from(projects, project=>(
+      { projects && Array.from(projects, project=>(
         <ProjectBlock key={project._id} project={project}  />
-        ))
-      }      
-
+        ))}      
     </VerticalMainBlock>
   )}
   

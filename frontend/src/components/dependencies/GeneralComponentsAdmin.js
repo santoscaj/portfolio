@@ -35,11 +35,11 @@ export const VerticalBlock = styled.div`
 
 
 
-export const ActionButtons = ()=>(
+export const ActionButtons = ({onDiscard, onSave, onDelete})=>(
   <FlexRow>
-    <Discard></Discard>
-    <Save></Save>
-    <Delete></Delete>
+    <Discard onClick={onDiscard}></Discard>
+    <Save onClick={onSave}></Save>
+    <Delete onClick={onDelete}></Delete>
   </FlexRow>
 )
 
