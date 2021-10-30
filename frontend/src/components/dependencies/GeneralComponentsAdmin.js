@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
+import { v4 as uuidv4 } from 'uuid';
 
 
 const Button = styled.button`
@@ -10,16 +11,29 @@ const Button = styled.button`
   margin: 5px;
 `
 
+export const VerticalIndividualBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid darkgray;
+  margin: 15px;
+  :hover{
+    border: 2px solid gray;
+  }
+`
+
 export const VerticalBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid gray;
-  margin: 5px;
+  border: 1px solid lightgray;
+  margin: 5px;`
 
-`
+
 
 export const ActionButtons = ()=>(
   <FlexRow>
@@ -46,26 +60,45 @@ export const TextArea = styled.textarea`
 `
 
 
-export const Skills= ({skills})=>(
-  <> 
-  <BoldHeader3>Skills:</BoldHeader3>
-  {skills && Array.from(skills, skill=>(
-     <VerticalBlock key={skill._id}>
-      <HorizontalGroup property="id" value={skill._id} disabled={true} />
-      <HorizontalGroup property="company" value={skill.name} />
-      <HorizontalGroup property="keywords" value={skill.keywords} />
-      <HorizontalGroup property="position" value={skill.detail} />
-      <MiniDelete >x</MiniDelete>
-     </VerticalBlock>
-  ))}
-  <VerticalBlock>
-    <HorizontalGroup property="company" value="" />
-    <HorizontalGroup property="order" value="" />
-    <HorizontalGroup property="position" value="" />
-    <MiniSave >+</MiniSave>
-    </VerticalBlock>
-  </>
-)
+export const Skills= ({skills, onChange})=>{
+  const updateSkillParent = (id, property, value) =>{
+    onChange(skills.map(skill=>skill._id==id? {...skill, [property]:value}: skill))
+  }
+
+  const [name, setName] = useState('')
+  const [keywords, setKeywords] = useState('')
+  const [detail, setDetail] = useState('')
+
+  const addSkill = ()=>{
+    if(!name || !keywords || !detail) return alert('Please fill out all skill fields')
+    let _id = uuidv4()
+    onChange([...skills, {_id, name, keywords, detail}])
+    setName('')
+    setKeywords('')
+    setDetail('')
+  }
+
+  return (
+    <> 
+    <BoldHeader3>Skills:</BoldHeader3>
+    {skills && Array.from(skills, skill=>(
+       <VerticalBlock key={skill._id}>
+        <HorizontalGroup property="id" value={skill._id} disabled={true} onChange={e=>updateSkillParent(skill._id, 'id',e.target.value)}/>
+        <HorizontalGroup property="name" value={skill.name} onChange={e=>updateSkillParent(skill._id, 'name',e.target.value)}/>
+        <HorizontalGroup property="keywords" value={skill.keywords} onChange={e=>updateSkillParent(skill._id, 'keywords',e.target.value)}/>
+        <HorizontalGroup property="detail" value={skill.detail} onChange={e=>updateSkillParent(skill._id, 'detail',e.target.value)}/>
+        <MiniDelete >x</MiniDelete>
+       </VerticalBlock>
+    ))}
+    <VerticalBlock>
+      <HorizontalGroup property="name" value={name} onChange={e=>setName(e.target.value)}/>
+      <HorizontalGroup property="keywords" value={keywords} onChange={e=>setKeywords(e.target.value)} />
+      <HorizontalGroup property="detail" value={detail} onChange={e=>setDetail(e.target.value)} />
+      <MiniSave onClick={addSkill} >+</MiniSave>
+      </VerticalBlock>
+    </>
+  )
+}
 
 export const BoldHeader3 = styled.div`
   color: black;
@@ -91,7 +124,7 @@ export const FlexRowStretch = styled.div`
   width: 100%;
 `
 
-export const VerticalMainlBlock = styled.div`
+export const VerticalMainBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,12 +164,13 @@ export const MiniDelete = styled.button`
     }
 `
 
-export const HorizontalGroup = ({property, value, disabled})=>(
-  <HorizontalBlock> 
-    <BoldHeader3> {property} </BoldHeader3> 
-    <input disabled={disabled} defaultValue={value} />
-  </HorizontalBlock>
-)
+export const HorizontalGroup = ({property, value, disabled, onChange})=>{
+  return (
+    <HorizontalBlock> 
+      <BoldHeader3> {property} </BoldHeader3> 
+      <input disabled={disabled} value={value} onChange={onChange} />
+    </HorizontalBlock>
+  )}
  
 HorizontalGroup.defaultProps ={
   property: null,

@@ -14,7 +14,7 @@ export const HorizontalBlock = styled.div`
   justify-content: space-between;
   align-items: center
 `
-const VerticalMainlBlock = styled.div`
+const VerticalMainBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,10 +80,10 @@ export const SectionTitle = ({title})=>(
 export const GroupArea = ({title, components})=>(
   <>
     <SectionTitle title={title} /> 
-    <VerticalMainlBlock>
+    <VerticalMainBlock>
       <GroupBlock>
       { components }
       </GroupBlock>
-    </VerticalMainlBlock> 
+    </VerticalMainBlock> 
   </>
 )

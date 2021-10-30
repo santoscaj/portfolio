@@ -1,7 +1,17 @@
 import React,{useState} from 'react'
 import { useGet } from '../utils/API'
-import {ActionButtons, VerticalBlock, HorizontalGroup, VerticalMainlBlock } from './dependencies/GeneralComponentsAdmin'
+// import {ActionButtons, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
+import {ActionButtons, HorizontalBlock, BoldHeader3, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
+const HorizontalGroup = ({property, value, disabled, onChange})=>{
+  
+  return (
+    <HorizontalBlock> 
+      <BoldHeader3> {property} </BoldHeader3> 
+      <input disabled={disabled} defaultValue={value} />
+    </HorizontalBlock>
+  )
+}
 
 
 const EducationBlock = ({education})=>(
@@ -31,14 +41,14 @@ const EducationAdmin = ()=>{
   })
 
   return (
-    <VerticalMainlBlock>  
+    <VerticalMainBlock>  
       {
       educations && Array.from(educations, education=>(
         <EducationBlock key={education._id} education={education}  />
         ))
       }      
 
-    </VerticalMainlBlock>
+    </VerticalMainBlock>
   )}
   
   export default EducationAdmin

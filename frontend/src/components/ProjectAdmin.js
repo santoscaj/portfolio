@@ -1,8 +1,18 @@
 import React,{useState} from 'react'
 // import styled from 'styled-components'
 import { useGet } from '../utils/API'
-import {ActionButtons,  VerticalBlock, Skills, HorizontalGroup, VerticalMainlBlock, HorizontalGroupTextArea} from './dependencies/GeneralComponentsAdmin'
+// import {ActionButtons,  VerticalBlock, Skills, VerticalMainBlock, HorizontalGroupTextArea} from './dependencies/GeneralComponentsAdmin'
+import {ActionButtons, Skills,  HorizontalGroupTextArea, HorizontalBlock, BoldHeader3, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
+const HorizontalGroup = ({property, value, disabled, onChange})=>{
+  
+  return (
+    <HorizontalBlock> 
+      <BoldHeader3> {property} </BoldHeader3> 
+      <input disabled={disabled} defaultValue={value} />
+    </HorizontalBlock>
+  )
+}
 
 const ProjectBlock = ({project})=>(
   <VerticalBlock>
@@ -30,14 +40,14 @@ const ProjectAdmin = ()=>{
   })
 
   return (
-    <VerticalMainlBlock>  
+    <VerticalMainBlock>  
       {
       projects && Array.from(projects, project=>(
         <ProjectBlock key={project._id} project={project}  />
         ))
       }      
 
-    </VerticalMainlBlock>
+    </VerticalMainBlock>
   )}
   
   export default ProjectAdmin
