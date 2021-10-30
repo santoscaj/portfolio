@@ -4,11 +4,9 @@ export const useGet = async (url) => {
   const [data, setData ] = useState(null)
   const [error, setError ] = useState(null)
   const [loading, setLoading ] = useState(true)
-
   const abortController = new AbortController()
   
   useEffect( ()=>{
-    
     (async ()=>{
       setError(null)
       setLoading(true)
@@ -26,20 +24,16 @@ export const useGet = async (url) => {
       }
       setLoading(false)
     })()
-
     return ()=>abortController.abort()
+     // eslint-disable-next-line
   },[url])
-  
-
   return {data, loading, error}
 }
 
-export const usePost = (url)=>{
-  
+export const usePost = (url, rawData)=>{
   const [data, setData] = useState('')  
-  const [loading, setLoading] = useState('')  
+  const [loading, setLoading] = useState(false)  
   const [error, setError] = useState('') 
-  
   const abortController = new AbortController()
 
   useEffect(()=>{
@@ -48,12 +42,90 @@ export const usePost = (url)=>{
 
     fetch(url, {
       method: 'POST',
-      signal: abortController.signal
+      signal: abortController.signal,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(rawData) 
+    }).then(res=>{
+      if(!res.ok) throw Error('something happened')
+      return res.json()
     }).then(data=>{
-
+      setData(data)
+      setLoading(false)
+    }).catch(err=>{
+      if(err.name !== 'AbortError' ){
+        setError(err)
+        setLoading(false)
+      }
     })
 
+    return ()=>abortController.abort()
+  // eslint-disable-next-line
+},[url])
+return {data, loading, error}
+}
 
+export const usePut=(url, rawData)=>{
+  const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  
+  const abortController = new AbortController()
+  useEffect(()=>{
+    setLoading(true)
+    fetch(url, {
+      method: 'PUT',
+      signal: abortController.signal,
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(rawData)
+    }).then(res=>{
+      if(!res.ok) throw Error('something happened')
+      return res.json()
+    }).then(data=>{
+      setData(data)
+      setError(null)
+    }).catch(err=>{
+      console.log(err)
+      setData(null)
+      setError(err)
+    })
+    setLoading(false)
 
+    return abortController.abort()
+    // eslint-disable-next-line
   },[url])
+  return {data, loading, error}
+}
+
+
+export const useDelete = (url)=>{
+  const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const abortController = new AbortController()
+  
+  useEffect(()=>{
+    (async ()=>{
+      setLoading(true)
+      try{
+        let response = await fetch(url, {
+          method: 'DELETE', 
+          signal: abortController.signal
+        })
+        if(!response.ok) throw Error('something happened')
+        let data = await response.json()
+        setData(data)
+        setError(null)
+      }catch(e){
+        if(!e.name==='AbortError'){
+          console.log(e)
+          setData(null)
+          setError(e)
+        }
+      }
+      setLoading(false)
+    })()
+    return abortController.abort()
+    // eslint-disable-next-line
+  },[url])
+  return {data, loading, error}
 }

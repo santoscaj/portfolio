@@ -1,17 +1,6 @@
 import React,{useState} from 'react'
 import { useGet } from '../utils/API'
-// import {ActionButtons, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
-import {ActionButtons, HorizontalBlock, BoldHeader3, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
-
-const HorizontalGroup = ({property, value, disabled, onChange})=>{
-  
-  return (
-    <HorizontalBlock> 
-      <BoldHeader3> {property} </BoldHeader3> 
-      <input disabled={disabled} defaultValue={value} />
-    </HorizontalBlock>
-  )
-}
+import {ActionButtons,HorizontalGroup, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
 const CertificationBlock = ({certification})=>{
   const [tempCertification, setTempCertification] = useState(certification)

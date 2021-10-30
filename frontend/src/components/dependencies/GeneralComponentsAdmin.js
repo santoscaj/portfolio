@@ -62,7 +62,7 @@ export const TextArea = styled.textarea`
 
 export const Skills= ({skills, onChange})=>{
   const updateSkillParent = (id, property, value) =>{
-    onChange(skills.map(skill=>skill._id==id? {...skill, [property]:value}: skill))
+    onChange(skills.map(skill=>skill._id===id? {...skill, [property]:value}: skill))
   }
 
   const [name, setName] = useState('')

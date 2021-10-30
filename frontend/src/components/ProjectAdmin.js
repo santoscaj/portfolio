@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useGet } from '../utils/API'
-import {ActionButtons, Skills, HorizontalGroup ,HorizontalGroupTextArea, HorizontalBlock, BoldHeader3, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
+import {ActionButtons, Skills, HorizontalGroup ,HorizontalGroupTextArea, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
 const ProjectBlock = ({project})=>{
   

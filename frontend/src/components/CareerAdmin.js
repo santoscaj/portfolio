@@ -11,6 +11,8 @@ const Responsabilities= ({responsabilities, onChange})=>{
   const [newItem, setNewItem] = useState('')
   const timer = useRef(null) 
   const updateParent = ()=>{onChange(tempArray.map(i=>i.value))}
+  
+  // eslint-disable-next-line
   useEffect(()=>autosave(),[tempArray])
 
   const autosaveFunctionCreator = (saveFunctionToRun, milliseconds)=>{
