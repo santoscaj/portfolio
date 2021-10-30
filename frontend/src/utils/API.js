@@ -33,3 +33,27 @@ export const useGet = async (url) => {
 
   return {data, loading, error}
 }
+
+export const usePost = (url)=>{
+  
+  const [data, setData] = useState('')  
+  const [loading, setLoading] = useState('')  
+  const [error, setError] = useState('') 
+  
+  const abortController = new AbortController()
+
+  useEffect(()=>{
+    setLoading(true)
+    setError(null)
+
+    fetch(url, {
+      method: 'POST',
+      signal: abortController.signal
+    }).then(data=>{
+
+    })
+
+
+
+  },[url])
+}

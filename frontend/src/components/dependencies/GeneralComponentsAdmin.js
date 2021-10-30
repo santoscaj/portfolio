@@ -182,7 +182,7 @@ HorizontalGroup.defaultProps ={
 export const HorizontalGroupTextArea = ({property, value})=>(
   <HorizontalBlock> 
     <BoldHeader3> {property} </BoldHeader3> 
-    <input defaultValue={value} />
+    <textarea rows={10} defaultValue={value} />
   </HorizontalBlock>
 )
  

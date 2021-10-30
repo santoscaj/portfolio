@@ -13,17 +13,25 @@ const HorizontalGroup = ({property, value, disabled, onChange})=>{
   )
 }
 
-const CertificationBlock = ({certification})=>(
-  <VerticalBlock>
-    <HorizontalGroup property="id" value={certification._id} disabled={true} />
-    <HorizontalGroup property="institution" value={certification.institution} />
-    <HorizontalGroup property="order" value={certification.order} />
-    <HorizontalGroup property="degree" value={certification.degree} />
-    <HorizontalGroup property="endDate" value={certification.endDate} />
-    <HorizontalGroup property="link" value={certification.link} />
-    <ActionButtons/>
-  </VerticalBlock>
-)
+const CertificationBlock = ({certification})=>{
+  const [tempCertification, setTempCertification] = useState(certification)
+  const changeTemporaryCertification = (property, value)=>{
+    setTempCertification(prev=> ({...prev, [property]: value}))
+  }
+  
+  return (
+    <VerticalBlock>
+      <HorizontalGroup property="id" value={tempCertification._id} onChange={e=>changeTemporaryCertification('id', e.target.value)} disabled={true} />
+      <HorizontalGroup property="institution" value={tempCertification.institution} onChange={e=>changeTemporaryCertification('institution', e.target.value)} />
+      <HorizontalGroup property="order" value={tempCertification.order} onChange={e=>changeTemporaryCertification('order', e.target.value)} />
+      <HorizontalGroup property="degree" value={tempCertification.degree} onChange={e=>changeTemporaryCertification('degree', e.target.value)} />
+      <HorizontalGroup property="endDate" value={tempCertification.endDate} onChange={e=>changeTemporaryCertification('endDate', e.target.value)} />
+      <HorizontalGroup property="link" value={tempCertification.link} onChange={e=>changeTemporaryCertification('link', e.target.value)} />
+      <ActionButtons/>
+    </VerticalBlock>
+  )
+}
+
 
 const CertificationAdmin = ()=>{
   const [certifications, setCertification ] = useState(null)

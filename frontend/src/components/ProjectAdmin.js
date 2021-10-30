@@ -1,33 +1,29 @@
 import React,{useState} from 'react'
-// import styled from 'styled-components'
 import { useGet } from '../utils/API'
-// import {ActionButtons,  VerticalBlock, Skills, VerticalMainBlock, HorizontalGroupTextArea} from './dependencies/GeneralComponentsAdmin'
-import {ActionButtons, Skills,  HorizontalGroupTextArea, HorizontalBlock, BoldHeader3, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
+import {ActionButtons, Skills, HorizontalGroup ,HorizontalGroupTextArea, HorizontalBlock, BoldHeader3, VerticalBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
-const HorizontalGroup = ({property, value, disabled, onChange})=>{
+const ProjectBlock = ({project})=>{
   
+  const [tempProject, setTempProject] = useState(project)
+  const changeTemporaryProject = (property, value)=>{
+    setTempProject(prev=> ({...prev, [property]: value}))
+  }
   return (
-    <HorizontalBlock> 
-      <BoldHeader3> {property} </BoldHeader3> 
-      <input disabled={disabled} defaultValue={value} />
-    </HorizontalBlock>
+    <VerticalBlock>
+      <HorizontalGroup property="id" value={tempProject._id} onChange={e=>changeTemporaryProject('id',e.target.value)}  disabled={true} />
+      <HorizontalGroup property="order" value={tempProject.order} onChange={e=>changeTemporaryProject('order',e.target.value)} />
+      <HorizontalGroup property="name" value={tempProject.name} onChange={e=>changeTemporaryProject('name',e.target.value)} />
+      <HorizontalGroup property="description" value={tempProject.description} onChange={e=>changeTemporaryProject('description',e.target.value)} />
+      <HorizontalGroup property="image" value={tempProject.image} onChange={e=>changeTemporaryProject('image',e.target.value)} />
+      <HorizontalGroup property="link" value={tempProject.link} onChange={e=>changeTemporaryProject('link',e.target.value)} />
+      <HorizontalGroup property="githubLink" value={tempProject.githubLink} onChange={e=>changeTemporaryProject('githubLink',e.target.value)} />
+      <HorizontalGroupTextArea property="fullDescription" value={tempProject.fullDescription} onChange={e=>changeTemporaryProject('fullDescription',e.target.value)} />
+      <Skills skills={tempProject.skills} onChange={newSkill=>changeTemporaryProject('skills', newSkill)}/>
+      <ActionButtons/>
+    </VerticalBlock>
   )
 }
 
-const ProjectBlock = ({project})=>(
-  <VerticalBlock>
-    <HorizontalGroup property="id" value={project._id}  disabled={true} />
-    <HorizontalGroup property="order" value={project.order} />
-    <HorizontalGroup property="name" value={project.name} />
-    <HorizontalGroup property="description" value={project.description} />
-    <HorizontalGroup property="image" value={project.image} />
-    <HorizontalGroup property="link" value={project.link} />
-    <HorizontalGroup property="githubLink" value={project.githubLink} />
-    <HorizontalGroupTextArea property="fullDescription" value={project.fullDescription} />
-    <Skills skills={project.skills}/>
-    <ActionButtons/>
-  </VerticalBlock>
-)
 
 const ProjectAdmin = ()=>{
   const [projects, setProject ] = useState(null)
