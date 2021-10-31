@@ -6,17 +6,18 @@ const dbName    = 'portfolio'
 mongoose.connect(`mongodb://${dbIpAddr}:27017/${dbName}`)
 
 const userSchema = new mongoose.Schema({
-  id: {type: Number, required: true, unique: true, immutable: true},
-  name: { type: String, required: true, index: { unique: true } },
+  username: { type: String, required: true, index: { unique: true } },
+  name: String, 
   password: { type: String, required: true },
   admin: {type: Boolean, default: false}
 })
 
 const educationSchema = new mongoose.Schema({
-  id: {type: Number, required: true, unique: true, immutable: true},
+  order: {type: Number, default: 10},
   institution: { type: String, required: true },
   degree: { type: String, required: true }, // Master of Science
   field: {type: String, required: true},    // Computer Engineering
+  focus: String,                            // Real-Time and Embedded Systems
   endDate: {type: Date, required: true},
   startDate: {type: Date, required: true},
   gpa: Number,
@@ -24,22 +25,20 @@ const educationSchema = new mongoose.Schema({
 })
 
 const certificationSchema = new mongoose.Schema({
-  id: {type: Number, required: true, unique: true, immutable: true},
+  order: {type: Number, default: 10},
   institution: { type: String, required: true },
   degree: { type: String, required: true },
-  field: {type: String, required: true}, 
-  endDate: {type: Date, required: true},
-  link: String
+  link: String,
+  endDate: {type: Date, required: true}
 })
 
 const Skill = {
   name: String,
-  aliases: [String],
+  keywords: [String],
   detail: String
 }
 
 const careerSchema = new mongoose.Schema({
-  id: {type: Number, required: true, unique: true, immutable: true},
   company: {type: String, required: true},
   location: {type: String, required: true},
   startDate: {type: String, required: true},
@@ -50,9 +49,13 @@ const careerSchema = new mongoose.Schema({
 })
 
 const projectSchema = new mongoose.Schema({
-  id: {type: Number, required: true, unique: true, immutable: true},
+  order: {type: Number, default: 10},
   name: {type:String, required: true},
   description: {type:String, required: true},
+  fullDescription: String, 
+  image: String, 
+  link: String,
+  githubLink: String, 
   skills: [Skill]
 })
 
