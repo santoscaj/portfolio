@@ -41,11 +41,20 @@ const ProfileImg = styled.img`
   width: 100%;
   max-width: 300px;
   height: auto;
+  cursor: pointer;
+  background: black;  
   border: 3px solid var(--header-border-color);
+  // border-width: 3px;
+  // border-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 12%, rgba(0,212,255,0.8270658605238971) 89%);
+  // border-image-slice: 1;
   // margin: 50px;
-  
+  // box-shadow: 0px 0px 0px 4px rgba(0,0,0,0.89);
+  // outline:
+
   @media only screen and (max-width: 300px){
     display: none
+  }
+
   }
   `
   
@@ -81,7 +90,7 @@ export const Logo = ()=>(
 )
 
 export const ProfilePicture = () => (
-  <ProfileImg src={profilePic} alt="profile pic" />
+  <ProfileImg onClick={smoothScroll} className="profile" src={profilePic} alt="profile pic" />
 )
 
 export const SocialMediaLinks = ()=>(
@@ -94,3 +103,43 @@ export const SocialMediaLinks = ()=>(
     </ SocialMediaIcon> 
   </>
 )
+
+
+/*
+  smoothScroll function from:
+  https://codepen.io/cesarrrguez/details/xxOeKwe
+*/
+const smoothScroll = ( speed = 1, acceleration = 1.085, speedLimit = 100) => {
+  let targetElement = document.getElementById('intro')
+  const scroll = window.pageYOffset;
+  const position = targetElement.getBoundingClientRect().top + scroll;
+  const distance = position - scroll;
+  let toTop = false;
+
+  if (distance < 0) {
+    toTop = true;
+    speed *= -1;
+  }
+
+  const loop = () => {
+    const currentScroll = window.pageYOffset;
+    const targetPos = targetElement.getBoundingClientRect().top + currentScroll;
+    const distanceToTarget = targetPos - currentScroll;
+
+    if (distanceToTarget < speed && !toTop) {
+      window.scrollBy(0, distanceToTarget);
+    } else {
+      window.scrollBy(0, speed);
+      const speedToLimitSpeed = speedLimit - speed;
+      const acceleratedSpeed = speed * acceleration;
+
+      if (speedToLimitSpeed - speed > acceleratedSpeed) speed *= acceleration;
+      else speed = speedLimit;
+
+      if (toTop && distanceToTarget === 0) return;
+      requestAnimationFrame(loop);
+    }
+  };
+  loop();
+};
+

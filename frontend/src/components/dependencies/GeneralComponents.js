@@ -31,8 +31,12 @@ width: 100%;
 border-radius: 5px;
 border:1px solid var(--block-border-color);  
 padding: 5px;
+margin: 10px 5px;
+cursor: pointer;
+transition: 1s;
 :hover{
-  border:1px solid var(--block-border-color-hover);  
+  background: rgb(252,252,252);
+  border:1px solid darkgray;  
 }
 `
 
@@ -59,10 +63,17 @@ font-size: 14px;
 `
 
 const MainTitle = styled.div`
-  padding: 20px;
+  // margin: 40px 100px 5px 100px;
+  padding: 40px 5px 5px 5px;
+  margin: auto;
   background: white;
-  border-bottom: 2px solid darkblue;
-  font-size: 25px
+  font-size: 25px;
+  border-bottom: 1px solid darkblue;
+  max-width: 1300px;
+
+  
+  // -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 9px 50px -30px rgba(0,0,0,0.17); 
+  // box-shadow: 0px 10px 13px -7px #000000, 0px 9px 50px -30px rgba(0,0,0,0.17);
 `
 
 export const InfoArea = styled.div`
@@ -74,7 +85,7 @@ export const InfoArea = styled.div`
 `
 
 export const SectionTitle = ({title})=>(
-  <MainTitle> {title} </MainTitle> 
+  <MainTitle className="title" > {title} </MainTitle> 
 )
 
 export const GroupArea = ({title, components})=>(

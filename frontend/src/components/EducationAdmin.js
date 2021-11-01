@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { useGet } from '../utils/API'
 import {ActionButtons,HorizontalGroup, VerticalIndividualBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
+import BackendEndpoint from '../api.config.js'
 
 
 const EducationBlock = ({education})=>{
@@ -31,7 +32,7 @@ const EducationBlock = ({education})=>{
 const EducationAdmin = ()=>{
   const [educations, setEducation ] = useState(null)
 
-  useGet('http://localhost:8000/educations')
+  useGet(BackendEndpoint.education)
   .then(answer=>{
     setEducation(answer.data)
   }).catch(e=>{

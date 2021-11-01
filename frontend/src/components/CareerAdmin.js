@@ -3,6 +3,7 @@ import React,{useState, useRef, useEffect} from 'react'
 import { useGet } from '../utils/API'
 import { v4 as uuidv4 } from 'uuid';
 import {ActionButtons, BoldHeader3, TextArea,  VerticalIndividualBlock, Skills, HorizontalGroup, FlexRowStretch, VerticalMainBlock, MiniDelete, MiniSave} from './dependencies/GeneralComponentsAdmin'
+import BackendEndpoint from '../api.config.js'
 
 
 const Responsabilities= ({responsabilities, onChange})=>{
@@ -82,7 +83,7 @@ const CareerBlock = ({career})=>{
 const CareerAdmin = ()=>{
   const [careers, setCareer ] = useState(null)
 
-  useGet('http://localhost:8000/careers')
+  useGet(BackendEndpoint.career)
   .then(answer=>{
     setCareer(answer.data)
   }).catch(e=>{

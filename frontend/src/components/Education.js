@@ -3,20 +3,21 @@ import { IndividualBlock, GroupArea} from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
 import { useGet } from '../utils/API'
 import {EducationTab, CertificationTab} from './dependencies/EducationComponents'
+import BackendEndpoint from '../api.config.js'
 
 
 const Career = ()=>{
 const [educations, setEducation] = useState([])
 const [certifications, setCertifications] = useState([])
 
-useGet('http://localhost:8000/educations')
+useGet(BackendEndpoint.education)
   .then(answer=>{
     setEducation(answer.data)
   }).catch(e=>{
     console.error(e)
   })
   
-useGet('http://localhost:8000/certifications')
+useGet(BackendEndpoint.certification)
 .then(answer=>{
   setCertifications(answer.data)
   }).catch(e=>{

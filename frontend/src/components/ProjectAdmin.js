@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import BackendEndpoint from '../api.config'
 import { useGet } from '../utils/API'
 import {ActionButtons, Skills,VerticalIndividualBlock,  HorizontalGroup ,HorizontalGroupTextArea, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
@@ -30,7 +31,7 @@ const ProjectBlock = ({project})=>{
 const ProjectAdmin = ()=>{
   const [projects, setProject ] = useState(null)
 
-  useGet('http://localhost:8000/projects')
+  useGet(BackendEndpoint.project)
   .then(answer=>{
     setProject(answer.data)
   }).catch(e=>{

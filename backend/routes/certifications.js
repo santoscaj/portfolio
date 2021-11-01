@@ -2,6 +2,7 @@ const express = require('express')
 const certifications = express.Router()
 const {authenticate} = require('./middleware')
 const  { Certification } = require('../db')
+
 require('dotenv').config()
 
 /*

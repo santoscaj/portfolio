@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { useGet } from '../utils/API'
 import {ActionButtons,HorizontalGroup, VerticalIndividualBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
+import BackendEndpoint from '../api.config.js'
 
 const CertificationBlock = ({certification})=>{
   const [tempCertification, setTempCertification] = useState(certification)
@@ -29,7 +30,7 @@ const CertificationBlock = ({certification})=>{
 const CertificationAdmin = ()=>{
   const [certifications, setCertification ] = useState(null)
 
-  useGet('http://localhost:8000/certifications')
+  useGet(BackendEndpoint.certification)
   .then(answer=>{
     setCertification(answer.data)
   }).catch(e=>{

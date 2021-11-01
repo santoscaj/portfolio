@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 
-export const useGet = async (url) => {
+export const useGet = async (url, image=false) => {
   const [data, setData ] = useState(null)
   const [error, setError ] = useState(null)
   const [loading, setLoading ] = useState(true)
@@ -11,9 +11,11 @@ export const useGet = async (url) => {
       setError(null)
       setLoading(true)
       try{
+        let data
         let response = await fetch(url, {signal: abortController.signal })
         if(!response.ok) throw Error('something happened')
-        let data = await response.json()
+        if(image) data = await response.blob()
+        else  data = await response.json()
         setData(data)
       }catch(err){
         if(err.name!=='AbortError'){

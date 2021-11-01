@@ -3,12 +3,12 @@ import {IndividualBlock, GroupArea } from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
 import { useGet } from '../utils/API'
 import CareerTab from './dependencies/CareerComponents'
-
+import BackendEndpoint from '../api.config.js'
 
 const Career = ()=>{
 const [careers, setCareer] = useState([])
 
-useGet('http://localhost:8000/careers')
+useGet(BackendEndpoint.career)
   .then(answer=>{
     setCareer(answer.data)
   }).catch(e=>{

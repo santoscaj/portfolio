@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 async function authenticate(req, res, next){
-  // return next()
+  return next()
   let token = req.get('Authentication')
   if(!token) return res.sendStatus(400)
   token = token.split(' ')[1]

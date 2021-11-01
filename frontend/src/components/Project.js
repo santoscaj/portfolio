@@ -3,12 +3,13 @@ import { IndividualBlock, GroupArea} from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
 import { useGet } from '../utils/API'
 import {ProjectTab} from './dependencies/ProjectComponents'
+import BackendEndpoint from '../api.config.js'
 
 
 const Career = ()=>{
 const [projects, setProjects] = useState([])
 
-useGet('http://localhost:8000/projects')
+useGet(BackendEndpoint.project)
   .then(answer=>{
     setProjects(answer.data)
   }).catch(e=>{

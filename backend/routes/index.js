@@ -3,6 +3,7 @@ const router = express.Router()
 const  {User} = require('../db')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const path = require('path')
 require('dotenv').config()
 
 router.post('/login', async (req, res)=>{
@@ -20,6 +21,16 @@ router.post('/login', async (req, res)=>{
   }
 })
 
+
+router.get('/image/:filename', async (req, res)=>{
+  let filename = req.params.filename
+  try{
+    res.sendFile(path.join(__dirname, '../images', filename))
+  }catch(e){
+    console.log(e)
+    return res.sendStatus(500)
+  }
+})
 
 
 
