@@ -12,10 +12,18 @@ export const useGet = async (url, image=false) => {
       setLoading(true)
       try{
         let data
-        let response = await fetch(url, {signal: abortController.signal })
+        let response = await fetch(url, {
+          signal: abortController.signal, 
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
         if(!response.ok) throw Error('something happened')
-        if(image) data = await response.blob()
-        else  data = await response.json()
+        if(image) {
+          data = await response.blob()
+          data = URL.createObjectURL(data)
+        } else  data = await response.json()
         setData(data)
       }catch(err){
         if(err.name!=='AbortError'){

@@ -7,12 +7,12 @@ import Project from './Project'
 
 const Home = ()=>(
   <>
-    {/* <Header /> */}
+    <Header />
     <div id="intro">
-      {/* <About /> */}
-      {/* <Career /> */}
+      <About />
+      <Career />
     </div>
-    {/* <Education /> */}
+    <Education />
     <Project />
   </>
 )

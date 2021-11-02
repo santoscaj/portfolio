@@ -81,7 +81,8 @@ export const InfoArea = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70px
+  height: 70px;
+  flex: 1 1 auto;
 `
 
 export const SectionTitle = ({title})=>(

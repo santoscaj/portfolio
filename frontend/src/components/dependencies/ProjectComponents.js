@@ -23,6 +23,11 @@ border: 2px solid green;
 ${link}
 `
 
+const Image = styled.img`
+width: 210px;
+height: 150px;
+`
+
 export const ProjectTab = ({project})=>{
   const [projectImage, setProjectImage] = useState(defaultImage)
 
@@ -35,8 +40,7 @@ export const ProjectTab = ({project})=>{
       if(answer.data){
         // let image = window.URL.createObjectURL(answer.data)
         
-        console.log(answer.data)
-        setProjectImage(URL.createObjectURL(answer.data))
+        setProjectImage(answer.data)
       }
     }).catch(e=>{
       console.error(e)
@@ -48,16 +52,18 @@ export const ProjectTab = ({project})=>{
       <ProjectName> { project.name } </ProjectName>    
     </HorizontalBlock>
     <HorizontalBlock>
-      <InfoArea>
-        <div> {project.description} </ div> 
-      </InfoArea>
       <VerticalBlock>
-        <div ><img src={projectImage} ></img></div>
+        <div >
+          <Image src={projectImage} ></Image>
+        </div>
         {/* <HorizontalBlock>
           <GithubBtn href={project.githubLink}  target="_blank" >Github</GithubBtn>
           <DemoBtn href={project.link}  target="_blank" >Demo</DemoBtn>
         </HorizontalBlock>  */}
       </VerticalBlock>
+        <InfoArea>
+          <div> {project.description} </ div> 
+        </InfoArea>
     </HorizontalBlock>
     </VerticalBlock>
   )
