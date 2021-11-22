@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { useGet } from '../utils/API'
+import { useGet } from '../utils/Hooks'
 import {ActionButtons,HorizontalGroup, VerticalIndividualBlock, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 import BackendEndpoint from '../api.config.js'
 

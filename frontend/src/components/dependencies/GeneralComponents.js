@@ -33,10 +33,10 @@ border:1px solid var(--block-border-color);
 padding: 5px;
 margin: 10px 5px;
 cursor: pointer;
-transition: 1s;
+transition: 0.4s;
 :hover{
   background: rgb(252,252,252);
-  border:1px solid darkgray;  
+  border: 1px solid darkgray;  
 }
 `
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {IndividualBlock, GroupArea } from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
-import { useGet } from '../utils/API'
+import { useGet } from '../utils/Hooks'
 import CareerTab from './dependencies/CareerComponents'
 import BackendEndpoint from '../api.config.js'
 

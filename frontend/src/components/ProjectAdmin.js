@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import BackendEndpoint from '../api.config'
-import { useGet } from '../utils/API'
+import { useGet } from '../utils/Hooks'
 import {ActionButtons, Skills,VerticalIndividualBlock,  HorizontalGroup ,HorizontalGroupTextArea, VerticalMainBlock } from './dependencies/GeneralComponentsAdmin'
 
 const ProjectBlock = ({project})=>{

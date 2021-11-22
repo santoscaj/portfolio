@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import { VerticalBlock, HorizontalBlock, BoldHeader1, InfoArea } from './GeneralComponents'
 import defaultImage from '../../images/no-image.png'
 import styled from 'styled-components'
-import { useGet } from '../../utils/API'
+import { useGet } from '../../utils/Hooks'
 import BackendEndpoint from '../../api.config.js'
 
 
@@ -27,6 +27,7 @@ const Image = styled.img`
 width: 210px;
 height: 150px;
 `
+
 
 export const ProjectTab = ({project})=>{
   const [projectImage, setProjectImage] = useState(defaultImage)

@@ -16,11 +16,7 @@ import {
 
 
 function App() {
-  const [token, setToken] = useState('yeah');
-
-  useEffect(()=>{
-    setToken('hahaha')
-  },[])
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   return (
     <div className="App">
@@ -32,10 +28,10 @@ function App() {
             <Redirect to="/login" /> }
           </Route>
           <Route path="/admin">
-            <Redirect to="/admin/projects" /> 
+            <Redirect to="/admin/career" /> 
           </Route>
           <Route path="/login">
-            <Login/>
+            <Login setToken={setToken}/>
           </Route>
           <Route path="/">
             <Home/>

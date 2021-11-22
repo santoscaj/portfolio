@@ -1,6 +1,7 @@
 import React,{useState, useRef, useEffect} from 'react'
 // import styled from 'styled-components'
-import { useGet } from '../utils/API'
+import { useGet } from '../utils/Hooks'
+import { Put, Delete, Post } from '../utils/API'
 import { v4 as uuidv4 } from 'uuid';
 import {ActionButtons, BoldHeader3, TextArea,  VerticalIndividualBlock, Skills, HorizontalGroup, FlexRowStretch, VerticalMainBlock, MiniDelete, MiniSave} from './dependencies/GeneralComponentsAdmin'
 import BackendEndpoint from '../api.config.js'
@@ -9,7 +10,7 @@ import BackendEndpoint from '../api.config.js'
 const Responsabilities= ({responsabilities, onChange})=>{
   const objectFromArray = responsabilities.map((value, idx)=>({id:idx,value}))
   const [tempArray, setTempArray] = useState(objectFromArray)
-  const [newItem, setNewItem] = useState('')
+  const [newResponsability, setNewResponsability] = useState('')
   const timer = useRef(null) 
   const updateParent = ()=>{onChange(tempArray.map(i=>i.value))}
   
@@ -34,10 +35,10 @@ const Responsabilities= ({responsabilities, onChange})=>{
   }
   
   const saveElement = ()=>{
-    if(!newItem) return alert('cannot save element, no data in element')
+    if(!newResponsability) return alert('cannot save element, no data in element')
     let newId = uuidv4() 
-    setTempArray(prev=>([...prev, {id: newId, value:newItem}]))
-    setNewItem('')
+    setTempArray(prev=>([...prev, {id: newId, value:newResponsability}]))
+    setNewResponsability('')
   }
 
   return (
@@ -50,7 +51,7 @@ const Responsabilities= ({responsabilities, onChange})=>{
       </FlexRowStretch>
     ))}
     <FlexRowStretch>
-    <TextArea rows={1} cols={140} value={newItem} onChange={e=>{setNewItem(e.target.value)}}></TextArea >
+    <TextArea rows={1} cols={140} value={newResponsability} onChange={e=>{setNewResponsability(e.target.value)}}></TextArea >
       <MiniSave onClick={saveElement}>+</MiniSave>
     </FlexRowStretch>
     </>
@@ -60,10 +61,17 @@ const Responsabilities= ({responsabilities, onChange})=>{
 const CareerBlock = ({career})=>{
   const [tempCareer, setTempCareer] = useState(career)
   const changeTemporaryCareer = (property, value)=>{
-    setTempCareer(prev=> ({...prev, [property]: value}))
+    setTempCareer(prev=> ({...prev, [property]: value || '' }))
   }
   const discardFunction = ()=>{console.log('discarding')}
-  const saveFunction =()=>{console.log('saving')}
+
+  const saveFunction =elementId=>{
+    console.log('saving')
+    Put(`${BackendEndpoint.career}/${elementId}`, tempCareer)
+    .then(res=>{console.log(res )})
+    .catch(err=>console.log(err))
+  }
+
   const deleteFunction =()=>{console.log('deleting')}
   return (
     <VerticalIndividualBlock>
@@ -75,7 +83,7 @@ const CareerBlock = ({career})=>{
       <HorizontalGroup property="endDate" value={tempCareer.endDate} onChange={e=>changeTemporaryCareer( 'endDate', e.target.value)} />
       <Responsabilities responsabilities={tempCareer.responsabilities} onChange={(newArray)=>changeTemporaryCareer('responsabilities', newArray)}/>
       <Skills skills={tempCareer.skills} onChange={(newSkill)=>changeTemporaryCareer('skills', newSkill)} />
-      <ActionButtons onDiscard={discardFunction} onSave={saveFunction} onDelete={deleteFunction}  />
+      <ActionButtons onDiscard={discardFunction} onSave={()=>saveFunction(tempCareer._id)} onDelete={deleteFunction}  />
     </VerticalIndividualBlock>
   )
 }

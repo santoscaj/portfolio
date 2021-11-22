@@ -38,21 +38,21 @@ export const VerticalBlock = styled.div`
 export const ActionButtons = ({onDiscard, onSave, onDelete})=>(
   <FlexRow>
     <Discard onClick={onDiscard}></Discard>
-    <Save onClick={onSave}></Save>
+    <Save onClick={onSave}></Save>  
     <Delete onClick={onDelete}></Delete>
   </FlexRow>
 )
 
-export const Discard = ()=>(
-  <Button  style={{borderColor :'orange', cursor: 'pointer'}}>Discard</Button>
+export const Discard = ({onClick})=>(
+  <Button onClick={onClick} style={{borderColor :'orange', cursor: 'pointer'}}>Discard</Button>
 )
 
-export const Save = ()=>(
-  <Button style={{borderColor :'green', cursor: 'pointer'}}>Save</Button>
+export const Save = ({onClick})=>(
+  <Button onClick={onClick} style={{borderColor :'green', cursor: 'pointer'}}>Save</Button>
 )
 
-export const Delete = ()=>(
-  <Button style={{borderColor :'red', cursor: 'pointer'}}>Delete</Button>
+export const Delete = ({onClick})=>(
+  <Button  onClick={onClick} style={{borderColor :'red', cursor: 'pointer'}}>Delete</Button>
 )
 
 export const TextArea = styled.textarea`

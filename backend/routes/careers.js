@@ -11,6 +11,8 @@ careers.get('/career', async (req,res)=>{
 })
 
 careers.post('/career', authenticate, async (req, res)=>{
+  console.log('inside', req.body)
+
   try{
     let newCareer = req.body
     let result = await Career.create(newCareer)
@@ -34,6 +36,7 @@ careers.delete('/career/:id', authenticate, async (req, res)=>{
 })
 
 careers.put('/career/:id', authenticate, async (req, res)=>{
+  console.log('inside', req.body)
   let _id = req.params.id
   let data = req.body
   try{
