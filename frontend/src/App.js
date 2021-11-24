@@ -20,6 +20,9 @@ function App() {
 
   return (
     <div className="App">
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <h1 style={{color:'red'}} >Page under construction</h1>
+      </div>
       <Router>
         <div>
         <Switch>
