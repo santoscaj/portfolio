@@ -1,11 +1,12 @@
 {
-  "name": "portfolio backend",
+  "name": "portfolio-backend",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "develop": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "react-scripts build && mv build /tmp/portfolio"
   },
   "author": "",
   "license": "ISC",
