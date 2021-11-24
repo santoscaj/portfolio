@@ -6,6 +6,7 @@ const dbName    = 'portfolio'
 mongoose.connect(`mongodb://${dbIpAddr}:27017/${dbName}`)
 
 const userSchema = new mongoose.Schema({
+  id: { type: Number, required: true } ,
   username: { type: String, required: true, index: { unique: true } },
   name: { type: String, default: '' }, 
   password: { type: String, required: true },

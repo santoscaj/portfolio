@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom'
 
 const Login = ({setToken})=>{
   const history = useHistory()
-  const [username, setUsername ] = useState('santoscaj')
-  const [password, setPassword ] = useState('ajsc33tb.')
+  const [username, setUsername ] = useState('develop')
+  const [password, setPassword ] = useState('develop pass')
   
   const submit = e =>{
     e.preventDefault()

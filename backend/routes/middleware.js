@@ -9,11 +9,9 @@ async function authenticate(req, res, next){
   token = token.split(' ')[1]
   try{
     let webtoken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET || 'unsafe secret' )
-    let authenticatedUser = await User.findOne({_id: webtoken.id})
-    console.log('helow deja el show', webtoken)
+    let authenticatedUser = await User.findOne({id: webtoken.id})
     if(!authenticatedUser) return res.sendStatus(401)
     req.authenticatedUser = authenticatedUser
-    console.log('user was authenticated')
     next()
   }catch(e){
     console.log(e.message)

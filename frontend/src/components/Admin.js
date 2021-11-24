@@ -47,6 +47,11 @@ const Admin = ({token, setToken})=>{
   let {category} = useParams()
   const pages = [  'career', 'projects', 'education', 'certification' ]  
   const history = useHistory()
+  
+  function logout(){
+    localStorage.clear()
+    history.push('/login')
+  }
 
   const changePage = event=>{
     history.push('/admin/'+event.target.id)
@@ -54,7 +59,10 @@ const Admin = ({token, setToken})=>{
   useEffect(()=>{},[category])
 
   return (<>
-    <h1 > Admin Page : {category} </h1>
+    <div style={{'display':'flex', justifyContent:'space-between', alignItems:'center', padding: '0 10px'}}>
+      <h1 > Admin Page : {category} </h1>
+      <button onClick={logout} style={{cursor:'pointer', background:'white', color:'black', border:'1px solid darkgray'}} >logout</button>
+    </div>
     <AdminNavBar pages={pages} onClickFunc={changePage} />
     <Switch>
       <Route path="/admin/career">

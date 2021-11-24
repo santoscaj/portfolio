@@ -69,6 +69,10 @@ export const Skills= ({skills, onChange})=>{
   const [keywords, setKeywords] = useState('')
   const [detail, setDetail] = useState('')
 
+  const deleteSkill = (id)=>{
+    onChange(skills.filter(s=>s._id!==id))
+  }
+
   const addSkill = ()=>{
     if(!name || !keywords || !detail) return alert('Please fill out all skill fields')
     let _id = uuidv4()
@@ -87,7 +91,7 @@ export const Skills= ({skills, onChange})=>{
         <HorizontalGroup property="name" value={skill.name} onChange={e=>updateSkillParent(skill._id, 'name',e.target.value)}/>
         <HorizontalGroup property="keywords" value={skill.keywords} onChange={e=>updateSkillParent(skill._id, 'keywords',e.target.value)}/>
         <HorizontalGroup property="detail" value={skill.detail} onChange={e=>updateSkillParent(skill._id, 'detail',e.target.value)}/>
-        <MiniDelete >x</MiniDelete>
+        <MiniDelete onClick={()=>deleteSkill(skill._id)} >x</MiniDelete>
        </VerticalBlock>
     ))}
     <VerticalBlock>

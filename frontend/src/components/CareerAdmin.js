@@ -1,7 +1,7 @@
 import React,{useState, useRef, useEffect} from 'react'
 // import styled from 'styled-components'
 import { useGet } from '../utils/Hooks'
-import { Put, Delete, Post } from '../utils/API'
+import { Put, Delete } from '../utils/API'
 import { v4 as uuidv4 } from 'uuid';
 import {ActionButtons, BoldHeader3, TextArea,  VerticalIndividualBlock, Skills, HorizontalGroup, FlexRowStretch, VerticalMainBlock, MiniDelete, MiniSave} from './dependencies/GeneralComponentsAdmin'
 import BackendEndpoint from '../api.config.js'
@@ -58,22 +58,36 @@ const Responsabilities= ({responsabilities, onChange})=>{
   )
 }
 
-const CareerBlock = ({career})=>{
-  const [tempCareer, setTempCareer] = useState(career)
+const CareerBlock = ({career, updateCareer, deleteCareer})=>{
+  let [tempCareer, setTempCareer] = useState(career)
+  
   const changeTemporaryCareer = (property, value)=>{
     setTempCareer(prev=> ({...prev, [property]: value || '' }))
   }
-  const discardFunction = ()=>{console.log('discarding')}
-
-  const saveFunction =elementId=>{
-    console.log('saving')
-    Put(`${BackendEndpoint.career}/${elementId}`, tempCareer)
-    .then(res=>{console.log(res )})
-    .catch(err=>console.log(err))
+  const discardFunction = ()=>{
+    console.log('discarding')
   }
 
-  const deleteFunction =()=>{console.log('deleting')}
+  const saveFunction =elementId=>{
+    Put(`${BackendEndpoint.career}/${elementId}`, tempCareer)
+    .then(res=>{
+      updateCareer(elementId, res)
+      setTempCareer(res)
+    })
+    .catch(err=>alert(err))
+  }
+
+  const deleteFunction = elementId=>{
+    Delete(`${BackendEndpoint.career}/${elementId}`)
+    .then(res=>{
+      deleteCareer(elementId)
+      setTempCareer(null)
+    })
+    .catch(err=>alert(err))
+  }
+
   return (
+    tempCareer &&
     <VerticalIndividualBlock>
       <HorizontalGroup property="id" value={tempCareer._id} disabled={true} onChange={(e)=>changeTemporaryCareer( '_id', e.target.value)} />
       <HorizontalGroup property="company" value={tempCareer.company} onChange={(e)=>changeTemporaryCareer( 'company', e.target.value)} />
@@ -83,24 +97,35 @@ const CareerBlock = ({career})=>{
       <HorizontalGroup property="endDate" value={tempCareer.endDate} onChange={e=>changeTemporaryCareer( 'endDate', e.target.value)} />
       <Responsabilities responsabilities={tempCareer.responsabilities} onChange={(newArray)=>changeTemporaryCareer('responsabilities', newArray)}/>
       <Skills skills={tempCareer.skills} onChange={(newSkill)=>changeTemporaryCareer('skills', newSkill)} />
-      <ActionButtons onDiscard={discardFunction} onSave={()=>saveFunction(tempCareer._id)} onDelete={deleteFunction}  />
+      <ActionButtons onDiscard={discardFunction} onSave={()=>saveFunction(tempCareer._id)} onDelete={()=>deleteFunction(tempCareer._id)}  />
     </VerticalIndividualBlock>
   )
 }
 
 const CareerAdmin = ()=>{
-  const [careers, setCareer ] = useState(null)
+  const [careers, setCareers ] = useState([])
+
+  function updateCareer(id, newVal){
+    let newArr = careers.map(c=>c.id===id? {...newVal}: {...c})
+    setCareers(newArr)
+  }
+
+  useEffect(()=>{},[careers])
+
+  function deleteCareer(id){
+    setCareers(careers.filter(c=>c._id!==id))
+  }
 
   useGet(BackendEndpoint.career)
   .then(answer=>{
-    setCareer(answer.data)
+    setCareers(answer.data)
   }).catch(e=>{
     console.error(e)
   })
   return (
     <VerticalMainBlock>  
       { careers && Array.from(careers, career=>(
-          <CareerBlock key={career._id} career={career}  />
+          <CareerBlock deleteCareer={deleteCareer} updateCareer={updateCareer} key={career._id} career={career}  />
       ))}      
     </VerticalMainBlock>
   )}
