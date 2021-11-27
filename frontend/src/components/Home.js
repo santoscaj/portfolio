@@ -10,10 +10,10 @@ const Home = ()=>(
     <Header />
     <div id="intro">
       <About />
-      <Career />
-    </div>
     <Education />
-    <Project />
+    </div>
+    <Project /> 
+    <Career />
   </>
 )
 

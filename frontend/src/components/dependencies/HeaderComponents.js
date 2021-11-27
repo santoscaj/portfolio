@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {FaGithub, FaLinkedin} from 'react-icons/fa'
+import {HiOutlineMail} from 'react-icons/hi'
 import profilePic from '../../images/profile.jpg'
 import logoName from '../../images/profile-name-black.svg'
 
@@ -101,9 +102,11 @@ export const SocialMediaLinks = ()=>(
     <SocialMediaIcon href="https://www.linkedin.com/in/santoscaj/" target="_blank" > 
       <FaLinkedin/>
     </ SocialMediaIcon> 
+    <SocialMediaIcon href="mailto:alberto@santosaj.com?subject=Your Website" > 
+      <HiOutlineMail/>
+    </ SocialMediaIcon> 
   </>
 )
-
 
 /*
   smoothScroll function from:

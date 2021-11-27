@@ -27,7 +27,69 @@ html{
   scroll-behavior: smooth
 }
 
+.resizeable-info{
+  background: lightgreen;
+  height:0;
+  /* transition: 4s */
+}
+
+.full-size-info{
+  background: lightgreen;
+  height: auto
+}
+
+.disabled-link,.disabled-github{
+  opacity: 0.5;
+  pointer-events:none;
+}
+
 .title{
   font-family: 'Titillium Web', sans-serif !important;
   font-style: italic;
+}
+
+/*  transitions and animations */
+
+@keyframes bounce {
+	0%, 100%, 10%, 25%, 35%, 45% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	20% {
+		-webkit-transform: translateY(-6px);
+		-ms-transform:     translateY(-6px);
+		transform:         translateY(-6px)
+	}
+	30% {
+		-webkit-transform: translateY(-4px);
+		-ms-transform:     translateY(-4px);
+		transform:         translateY(-4px)
+	}40% {
+		-webkit-transform: translateY(-2px);
+		-ms-transform:     translateY(-2px);
+		transform:         translateY(-2px)
+	}
+}
+
+.resize-enter {
+  opacity: 0.01;
+  height:0;
+}
+
+.resize-enter-active {
+  opacity: 1;
+  height: 500px;
+  transition: all 1000ms ease-in-out;
+}
+
+.resize-leave {
+  opacity: 1;
+  height: 500px;
+}
+
+.resize-leave-active {
+  height: 0;
+  opacity: 0;
+  transition: all 1000ms ease-in-out;
 }

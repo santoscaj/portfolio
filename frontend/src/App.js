@@ -14,15 +14,20 @@ import {
   // useLocation
 } from "react-router-dom";
 
+const PageUnderConstruction= ()=>{
+return (
+  <div style={{display:'flex', justifyContent:'center', alignItems:'center', height: '35px'}}>
+    <h4 style={{color:'red'}} >Page under construction</h4>
+  </div>
+)}
+
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
 
   return (
     <div className="App">
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-        <h1 style={{color:'red'}} >Page under construction</h1>
-      </div>
+      <PageUnderConstruction/>
       <Router>
         <div>
         <Switch>

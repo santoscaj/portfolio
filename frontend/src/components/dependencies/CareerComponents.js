@@ -9,7 +9,7 @@ function getTime(endDate, startDate){
   let start = moment.unix((startDate))
   let end = moment.unix((endDate))
   let years = end.diff(start, 'years')
-  let months = end.diff(start, 'months')
+  let months = end.diff(start, 'months')%12
   return `${years} years ${months} months`
 }
 

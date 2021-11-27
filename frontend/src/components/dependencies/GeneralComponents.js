@@ -12,7 +12,7 @@ export const HorizontalBlock = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center
+  align-items: center;
 `
 const VerticalMainBlock = styled.div`
   display: flex;
@@ -32,8 +32,7 @@ border-radius: 5px;
 border:1px solid var(--block-border-color);  
 padding: 5px;
 margin: 10px 5px;
-cursor: pointer;
-transition: 0.4s;
+transition: 0.3s;
 :hover{
   background: rgb(252,252,252);
   border: 1px solid darkgray;  
@@ -82,6 +81,7 @@ export const InfoArea = styled.div`
   justify-content: center;
   align-items: center;
   height: 70px;
+  width: 100%;
   flex: 1 1 auto;
 `
 

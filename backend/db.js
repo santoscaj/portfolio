@@ -14,32 +14,38 @@ const userSchema = new mongoose.Schema({
 })
 
 const educationSchema = new mongoose.Schema({
+  _id: { type: String, required: true } ,
   order: {type: Number, default: 10},
   institution: { type: String, required: true },
   degree: { type: String, required: true }, // Master of Science
   field: {type: String, required: true},    // Computer Engineering
   focus: { type: String, default: '' },                            // Real-Time and Embedded Systems
-  endDate: {type: Date, required: true},
-  startDate: {type: Date, required: true},
-  gpa: {type: Number, required: true},
+  endDate: {type: String, required: true},
+  startDate: {type: String, required: true},
+  gpa: {type: String, required: true},
+  gpaBase: {type: String, required: true},
   link: { type: String, default: '' }
 })
 
 const certificationSchema = new mongoose.Schema({
+  _id: { type: String, required: true } ,
   order: {type: Number, default: 10},
   institution: { type: String, required: true },
   degree: { type: String, required: true },
   link: { type: String, default: '' },
-  endDate: {type: Date, required: true}
+  endDate: {type: Number, required: true},
+  expDate: {type: Number, required: true}
 })
 
 const Skill = {
+  _id: { type: String, required: true } ,
   name: { type: String, default: '' },
   keywords: [String],
   detail: { type: String, default: '' }
 }
 
 const careerSchema = new mongoose.Schema({
+  _id: { type: String, required: true } ,
   company: {type: String, required: true},
   location: {type: String, required: true},
   startDate: {type: String, required: true},
@@ -50,6 +56,7 @@ const careerSchema = new mongoose.Schema({
 })
 
 const projectSchema = new mongoose.Schema({
+  _id: { type: String, required: true } ,
   order: {type: Number, default: 10},
   name: {type:String, required: true},
   description: {type:String, required: true},
