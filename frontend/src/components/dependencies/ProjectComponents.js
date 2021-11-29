@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import { VerticalBlock, HorizontalBlock, BoldHeader1, InfoArea } from './GeneralComponents'
+import { VerticalBlock, HorizontalBlock, BoldHeader1 } from './GeneralComponents'
 import defaultImage from '../../images/no-image.png'
 import styled from 'styled-components'
 import { useGet } from '../../utils/Hooks'
@@ -66,6 +66,20 @@ const MoreBtn = styled.button`
     animation-name: bounce
   }
 `
+const InfoArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  min-height: 70px;
+  height: auto;
+  width: 100%;
+  flex: 1 1 auto;
+  *>{
+    margin: 2px
+  }
+`
 
 const MoreArea = ({toggle, more})=>(
   <div style={{display:'flex', justifyContent:'center'}}>
@@ -73,13 +87,7 @@ const MoreArea = ({toggle, more})=>(
   </div>
 )
 
-const ProjectInfoArea = ({description})=>{
-  return (
-    <InfoArea>
-          <div> {description} </ div> 
-    </InfoArea>
-  )
-}
+// ProjectInfoArea
 
 const ProjectLinks = ({link, github})=>{
   let LinkClass = (!!link) ? '' : 'disabled-link'
@@ -92,23 +100,24 @@ const ProjectLinks = ({link, github})=>{
   )
 }
 
-const MoreInfo = ({more, toggle, fullDescription})=>{
-  // if(more) className+= ' full-size-info'
+const ProjectInfoArea = ({more, toggle, fullDescription, description})=>{
   // className=''
   let className = 'resizeable-info'
+  if(more) className+= ' full-size-info'
   return (
   <VerticalBlock>
-    <MoreArea toggle={toggle} more={more} />
-    {more && 
     <TransitionGroup transition="resize" 
       transitionEnterTimeout={20000}
       transitionLeaveTimeout={20000}
-    >
-      <InfoArea className={className}>
-          <div> {fullDescription} </ div> 
+      >
+      <InfoArea>
+        <p>{description}</p>
+        {more && 
+          <p className={className}> {fullDescription} </ p> 
+        }
       </InfoArea>   
     </TransitionGroup>
-    }
+    <MoreArea toggle={toggle} more={more} />
   </VerticalBlock>
 )}
 
@@ -135,13 +144,16 @@ export const ProjectTab = ({project})=>{
       <ProjectName> { project.name } </ProjectName>    
     </HorizontalBlock>
     <HorizontalBlock>
-      <VerticalBlock>
-        <div >  <Image src={projectImage} ></Image> </div>
-      </VerticalBlock>
-      <VerticalBlock style={{border:'1px solid red', width: '100%'}}>
-        <ProjectInfoArea description={project.description} />
-        <MoreInfo fullDescription={project.fullDescription} more={more} toggle={toggleFullDescription} />
-        <ProjectLinks link={project.link} github={project.githubLink}/>
+      {/* <VerticalBlock> */}
+        <div style={{alignSelf:'flex-start'}} >  
+          <Image src={projectImage} ></Image> 
+          <ProjectLinks link={project.link} github={project.githubLink}/>
+        </div>
+      {/* </VerticalBlock>/ */}
+      {/* <VerticalBlock style={{display:'flex', alignItems:'fex-start',border:'1px solid red', width: '100%',alignSelf:'flex-start' }}> */}
+      <VerticalBlock style={{padding: 0 ,width: '100%',alignSelf:'flex-start' }}>
+        {/* <ProjectInfoArea /> */}
+        <ProjectInfoArea description={project.description} fullDescription={project.fullDescription} more={more} toggle={toggleFullDescription} />
       </VerticalBlock>
     </HorizontalBlock>
     </VerticalBlock>

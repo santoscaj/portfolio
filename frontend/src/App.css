@@ -28,14 +28,12 @@ html{
 }
 
 .resizeable-info{
-  background: lightgreen;
   height:0;
   /* transition: 4s */
 }
 
 .full-size-info{
-  background: lightgreen;
-  height: auto
+  height: 200px
 }
 
 .disabled-link,.disabled-github{
@@ -74,22 +72,22 @@ html{
 
 .resize-enter {
   opacity: 0.01;
-  height:0;
+  /* height:0; */
 }
 
 .resize-enter-active {
   opacity: 1;
-  height: 500px;
+  /* height: 500px; */
   transition: all 1000ms ease-in-out;
 }
 
 .resize-leave {
   opacity: 1;
-  height: 500px;
+  /* height: 500px; */
 }
 
 .resize-leave-active {
-  height: 0;
+  /* height: 0; */
   opacity: 0;
   transition: all 1000ms ease-in-out;
 }

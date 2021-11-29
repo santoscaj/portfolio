@@ -6,7 +6,7 @@ export const VerticalBlock = styled.div`
   flex-direction: column;
   padding: 10px;
   border-radius: 5px;
-
+  height: auto;
 `
 export const HorizontalBlock = styled.div`
   display: flex;
