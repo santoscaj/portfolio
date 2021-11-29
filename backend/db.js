@@ -1,6 +1,7 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
-const dbIpAddr  = 'localhost'
+const dbIpAddr  = process.env.DB_ADDR
 const dbName    = 'portfolio'
 
 mongoose.connect(`mongodb://${dbIpAddr}:27017/${dbName}`)

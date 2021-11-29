@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
@@ -30,5 +30,5 @@ app.use(educations)
 app.use(certifications)
 app.use(projects)
 
-const port = process.env.PORT || 2000
+const port = process.env.PORT || 5000
 server.listen(port)
