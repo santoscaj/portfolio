@@ -1,5 +1,8 @@
 
-const remoteServer = 'http://localhost:2000'
+
+const server_ip = process.env.REACT_APP_BACKEND_SERVER
+const port = process.env.REACT_APP_BACKEND_PORT
+const remoteServer = `https://${server_ip}:${port}`
 
 const BackendEndpoint = {
   career : `${remoteServer}/career`,
