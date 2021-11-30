@@ -1,28 +1,29 @@
 import React, { useState } from 'react'
 import { IndividualBlock, GroupArea} from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
-import { useGet } from '../utils/Hooks'
+// import { useGet } from '../utils/Hooks'
 import {EducationTab, CertificationTab} from './dependencies/EducationComponents'
-import BackendEndpoint from '../api.config.js'
+// import BackendEndpoint from '../api.config.js'
+import { educationData, certificationData } from '../utils/serverlessData'
 
 
 const Career = ()=>{
-const [educations, setEducation] = useState([])
-const [certifications, setCertifications] = useState([])
+const [educations, setEducation] = useState(educationData)
+const [certifications, setCertifications] = useState(certificationData)
 
-useGet(BackendEndpoint.education)
-  .then(answer=>{
-    setEducation(answer.data)
-  }).catch(e=>{
-    console.error(e)
-  })
+// useGet(BackendEndpoint.education)
+//   .then(answer=>{
+//     setEducation(answer.data)
+//   }).catch(e=>{
+//     // console.error(e)
+//   })
   
-useGet(BackendEndpoint.certification)
-.then(answer=>{
-  setCertifications(answer.data)
-  }).catch(e=>{
-    console.error(e)
-  })
+// useGet(BackendEndpoint.certification)
+// .then(answer=>{
+//   setCertifications(answer.data)
+//   }).catch(e=>{
+//     // console.error(e)
+//   })
 
   let educationComponents = educations && Array.from(educations, education=>(
     <IndividualBlock key={education._id} >

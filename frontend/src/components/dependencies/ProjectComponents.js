@@ -2,9 +2,23 @@ import React,{useEffect, useState} from 'react'
 import { VerticalBlock, HorizontalBlock, BoldHeader1 } from './GeneralComponents'
 import defaultImage from '../../images/no-image.png'
 import styled from 'styled-components'
-import { useGet } from '../../utils/Hooks'
-import BackendEndpoint from '../../api.config.js'
+// import { useGet } from '../../utils/Hooks'
+// import BackendEndpoint from '../../api.config.js'
 import {TransitionGroup} from 'react-transition-group'; 
+
+import menapageImage from '../../images/serverless/menapage.png'
+import todolistImage from '../../images/serverless/todolist.png'
+import portfolioImage from '../../images/serverless/portfolio.png'
+import ticketImage from '../../images/serverless/ticket.png'
+import opuschecksImage from '../../images/serverless/opuschecks.png'
+
+let projectImages = {
+  'todolist.png'   : todolistImage,
+  'ticket.png'     : ticketImage,
+  'portfolio.png'  : portfolioImage,
+  'opuschecks.png' : opuschecksImage,
+  'menapage.png'   : menapageImage
+}
 
 const ProjectName = BoldHeader1
 
@@ -38,13 +52,14 @@ const FlexDiv = styled.div`
 const ProjectLink = styled.a`
   ,:visited{
     color: black;
-    padding: 2px;
+    padding: 1px;
     margin: 5px;
-    border: 1px solid black;
+    // border: 1px solid black;
     width: 100px;
+    font-size: 10px;
     text-decoration: none;
     text-align: center;
-    font-weight: 400;
+    font-weight: 600;
     border-radius: 3px;
   }
 `
@@ -90,12 +105,12 @@ const MoreArea = ({toggle, more})=>(
 // ProjectInfoArea
 
 const ProjectLinks = ({link, github})=>{
-  let LinkClass = (!!link) ? '' : 'disabled-link'
-  let GithubClass = (!!github) ? '' : 'disabled-github'
+  let LinkClass = (!!link) ? 'link-class' : 'link-class disabled-link'
+  let GithubClass = (!!github) ? 'github-class' : 'github-class disabled-github'
   return (
     <FlexDiv>
-      <ProjectLink className={LinkClass} style={{borderColor:'tomato'}} href={link} target="_blank" > demo </ProjectLink>
-      <ProjectLink className={GithubClass} style={{borderColor:'teal'}} href={github} target="_blank"> github </ProjectLink>
+      <ProjectLink className={LinkClass} href={link} target="_blank" > demo </ProjectLink>
+      <ProjectLink className={GithubClass} href={github} target="_blank"> github </ProjectLink>
     </FlexDiv>
   )
 }
@@ -106,37 +121,37 @@ const ProjectInfoArea = ({more, toggle, fullDescription, description})=>{
   if(more) className+= ' full-size-info'
   return (
   <VerticalBlock>
-    <TransitionGroup transition="resize" 
+    {/* <TransitionGroup transition="resize" 
       transitionEnterTimeout={20000}
       transitionLeaveTimeout={20000}
-      >
+      > */}
       <InfoArea>
         <p>{description}</p>
         {more && 
           <p className={className}> {fullDescription} </ p> 
         }
       </InfoArea>   
-    </TransitionGroup>
+    {/* </TransitionGroup> */}
     <MoreArea toggle={toggle} more={more} />
   </VerticalBlock>
 )}
 
 export const ProjectTab = ({project})=>{
-  const [projectImage, setProjectImage] = useState(defaultImage)
+  const [projectImage, setProjectImage] = useState(projectImages[project.image])
   const [more, setMore] = useState(false)
 
   function toggleFullDescription(){
     setMore(!more)
   }
 
-  useGet(`${BackendEndpoint.image}/${project.image}`, true)
-    .then(answer=>{
-      if(answer.data){
-        setProjectImage(answer.data)
-      }
-    }).catch(e=>{
-      console.error(e)
-    })
+  // useGet(`${BackendEndpoint.image}/${project.image}`, true)
+  //   .then(answer=>{
+  //     if(answer.data){
+  //       setProjectImage(answer.data)
+  //     }
+  //   }).catch(e=>{
+  //     console.error(e)
+  //   })
 
   return (
     <VerticalBlock>

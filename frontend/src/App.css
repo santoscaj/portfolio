@@ -46,6 +46,30 @@ html{
   font-style: italic;
 }
 
+.link-class{
+  background: white;
+  /* color: tomato !important; */
+  border: 1px solid tomato;
+}
+
+.link-class:hover{
+  border: 1px solid tomato !important;
+  background: #F4C095;
+}
+
+
+.github-class{
+  background: white;
+  color: #51A3A3;
+  border: 1px solid #0B7A75;
+}
+.github-class:hover{
+  border: 1px solid #0B7A75;
+  background: #51A3A3 !important;
+  color:0B7A75 !important;
+}
+
+
 /*  transitions and animations */
 
 @keyframes bounce {

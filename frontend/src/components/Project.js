@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import { IndividualBlock, GroupArea} from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
-import { useGet } from '../utils/Hooks'
+// import { useGet } from '../utils/Hooks'
 import {ProjectTab} from './dependencies/ProjectComponents'
-import BackendEndpoint from '../api.config.js'
-
+// import BackendEndpoint from '../api.config.js'
+import { projectData } from '../utils/serverlessData'
 
 const Career = ()=>{
-const [projects, setProjects] = useState([])
+const [projects, setProjects] = useState(projectData)
 
-useGet(BackendEndpoint.project)
-  .then(answer=>{
-    setProjects(answer.data)
-  }).catch(e=>{
-    console.error(e)
-  })
-  
+// useGet(BackendEndpoint.project)
+//   .then(answer=>{
+//     setProjects(answer.data)
+//   }).catch(e=>{
+//     // console.error(e)
+//   })  
 
 let projectArray = projects && Array.from(projects, project=>(
   <IndividualBlock key={project._id} >

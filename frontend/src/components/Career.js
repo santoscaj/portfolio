@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import {IndividualBlock, GroupArea } from './dependencies/GeneralComponents'
 // import styled from 'styled-components'
-import { useGet } from '../utils/Hooks'
+// import { useGet } from '../utils/Hooks'
 import CareerTab from './dependencies/CareerComponents'
-import BackendEndpoint from '../api.config.js'
+// import BackendEndpoint from '../api.config.js'
+import { careerData } from '../utils/serverlessData'
+
 
 const Career = ()=>{
-const [careers, setCareer] = useState([])
+const [careers, setCareer] = useState(careerData)
 
-useGet(BackendEndpoint.career)
-  .then(answer=>{
-    setCareer(answer.data)
-  }).catch(e=>{
-    console.error(e)
-  })
+// useGet(BackendEndpoint.career)
+//   .then(answer=>{
+//     setCareer(answer.data)
+//   }).catch(e=>{
+//     // console.error(e)
+//   })
 
 let careerArray = careers && Array.from(careers, career=>(
   <IndividualBlock key={career._id}>
