@@ -13,6 +13,10 @@ export const HorizontalBlock = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media only screen and (max-width: 800px){
+    flex-direction: column
+  }
 `
 const VerticalMainBlock = styled.div`
   display: flex;
@@ -30,12 +34,12 @@ export const IndividualBlock = styled.div`
 width: 100%;
 border-radius: 5px;
 border:1px solid var(--block-border-color);  
-padding: 5px;
+padding: 10px 50px;
 margin: 10px 5px;
 transition: 0.3s;
 :hover{
-  background: rgb(252,252,252);
-  border: 1px solid darkgray;  
+  background: rgb(0,0,255,0.01);
+  border: 1px solid var(--header-background-color-main-1);  
 }
 `
 
@@ -66,7 +70,8 @@ const MainTitle = styled.div`
   padding: 40px 5px 5px 5px;
   margin: auto;
   background: white;
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: 700;
   border-bottom: 1px solid darkblue;
   max-width: 1300px;
 
@@ -86,7 +91,8 @@ export const InfoArea = styled.div`
 `
 
 export const SectionTitle = ({title})=>(
-  <MainTitle className="title" > {title} </MainTitle> 
+  <MainTitle classNa
+  ="title" > {title} </MainTitle> 
 )
 
 export const GroupArea = ({title, components})=>(

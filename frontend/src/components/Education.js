@@ -5,7 +5,16 @@ import { IndividualBlock, GroupArea} from './dependencies/GeneralComponents'
 import {EducationTab, CertificationTab} from './dependencies/EducationComponents'
 // import BackendEndpoint from '../api.config.js'
 import { educationData, certificationData } from '../utils/serverlessData'
+import styled from 'styled-components'
 
+
+const Anchor =styled.a`
+,:visited{
+  color: black;
+  text-decoration: none;
+  text-align: center;
+}
+`
 
 const Career = ()=>{
 const [educations, setEducation] = useState(educationData)
@@ -33,7 +42,9 @@ const [certifications, setCertifications] = useState(certificationData)
   
   let certificationComponents = certifications && Array.from(certifications, certification=>(
     <IndividualBlock key={certification._id} >
-      <CertificationTab certification={certification} />
+      <Anchor style={{cursor:'pointer'}} href={certification.link} target="_blank" >
+        <CertificationTab certification={certification} />
+      </Anchor>
     </IndividualBlock>  
   ))
   

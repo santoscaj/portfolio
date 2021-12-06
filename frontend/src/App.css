@@ -9,10 +9,21 @@
   /* header vars  */
   --main-background-color: black;
   --header-background-color: #E5E5E5;
+  --header-background-color: #324376;
+  --header-background-color-2: #D6EEFF;
+
+  --header-background-color-main-1: rgba(50, 67, 118, 0.75);
+  --header-background-color-main-2: rgba(32,178,170, 0.75);
+
   --header-font-color: black;
+  --header-border-color: #D6EEFF;
   --header-border-color: #003459;
   --header-hover-background-color:#003459 ;
   --header-hover-font-color: #E5E5E5;
+
+  --profile-picture-size: 45vh;
+  --profile-picture-max-size: 350px;
+  --profile-picture-border-size: 10px;
 
   --block-border-color: transparent;
   --block-border-color-hover: lightgray;
@@ -53,8 +64,10 @@ html{
 }
 
 .link-class:hover{
-  border: 1px solid tomato !important;
-  background: #F4C095;
+  /* border: 1px solid tomato !important;
+  background: #F4C095; */
+  background: orangered !important;
+  color: white !important
 }
 
 
@@ -64,9 +77,11 @@ html{
   border: 1px solid #0B7A75;
 }
 .github-class:hover{
-  border: 1px solid #0B7A75;
+  /* border: 1px solid #0B7A75;
   background: #51A3A3 !important;
-  color:0B7A75 !important;
+  color:0B7A75 !important; */
+  background: #0B7A75 !important;
+  color: white;
 }
 
 
