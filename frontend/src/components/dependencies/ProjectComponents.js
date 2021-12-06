@@ -41,6 +41,10 @@ const Image = styled.img`
 width: 328px;
 height: 150px;
 border: 1px solid darkblue;
+
+@media only screen and (max-width: 600px){
+  display: none
+}
 `
 
 const FlexDiv = styled.div`
@@ -79,6 +83,10 @@ const MoreBtn = styled.button`
   animation-iteration-count: infinite;
   :hover{
     animation-name: bounce
+  }
+
+  @media only screen and (max-width: 800px){
+    display: none
   }
 `
 const InfoArea = styled.div`
@@ -155,22 +163,22 @@ export const ProjectTab = ({project})=>{
 
   return (
     <VerticalBlock>
-    <HorizontalBlock>
-      <ProjectName> { project.name } </ProjectName>    
-    </HorizontalBlock>
-    <HorizontalBlock>
-      {/* <VerticalBlock> */}
-        <div style={{alignSelf:'flex-start'}} >  
-          <Image src={projectImage} ></Image> 
-          <ProjectLinks link={project.link} github={project.githubLink}/>
-        </div>
-      {/* </VerticalBlock>/ */}
-      {/* <VerticalBlock style={{display:'flex', alignItems:'fex-start',border:'1px solid red', width: '100%',alignSelf:'flex-start' }}> */}
-      <VerticalBlock style={{padding: 0 ,width: '100%',alignSelf:'flex-start' }}>
-        {/* <ProjectInfoArea /> */}
-        <ProjectInfoArea description={project.description} fullDescription={project.fullDescription} more={more} toggle={toggleFullDescription} />
-      </VerticalBlock>
-    </HorizontalBlock>
+      <HorizontalBlock>
+        <ProjectName> { project.name } </ProjectName>    
+      </HorizontalBlock>
+      <HorizontalBlock>
+        {/* <VerticalBlock> */}
+          <div style={{alignSelf:'flex-start'}} >  
+            <Image src={projectImage} ></Image> 
+            <ProjectLinks link={project.link} github={project.githubLink}/>
+          </div>
+        {/* </VerticalBlock>/ */}
+        {/* <VerticalBlock style={{display:'flex', alignItems:'fex-start',border:'1px solid red', width: '100%',alignSelf:'flex-start' }}> */}
+        <VerticalBlock style={{padding: 0 ,width: '100%',alignSelf:'flex-start' }}>
+          {/* <ProjectInfoArea /> */}
+          <ProjectInfoArea description={project.description} fullDescription={project.fullDescription} more={more} toggle={toggleFullDescription} />
+        </VerticalBlock>
+      </HorizontalBlock>
     </VerticalBlock>
   )
 }
