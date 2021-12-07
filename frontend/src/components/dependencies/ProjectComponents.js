@@ -28,15 +28,6 @@ padding: 4px;
 text-decoration: none;
 `
 
-const GithubBtn = styled.a`
-border: 2px solid red;
-${link}
-`
-const DemoBtn = styled.a`
-border: 2px solid green;
-${link}
-`
-
 const Image = styled.img`
 width: 328px;
 height: 150px;

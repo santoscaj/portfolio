@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,200;1,300;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
 
 * {
   box-sizing: border-box;
 }
+
 
 #root {
   /* header vars  */
@@ -12,16 +14,22 @@
   --header-background-color: #324376;
   --header-background-color-2: #D6EEFF;
 
+  --header-background-color-main-1: #2C2C54;
+  --header-background-color-main-2: white;
   --header-background-color-main-1: rgba(50, 67, 118, 0.75);
-  --header-background-color-main-2: rgba(32,178,170, 0.75);
+  --header-background-color-main-3: rgba(32,178,170, 0.75);
+  --header-background-color-main-1: rgba(60, 145, 230,0.75);
+  --header-background-color-main-3: rgba(50, 67, 118, 0.75);
 
   --header-font-color: black;
   --header-border-color: #D6EEFF;
   --header-border-color: #003459;
+  --header-border-color: #F7F7FF;
+  --header-border-color: rgba(50, 67, 118,0.5);
   --header-hover-background-color:#003459 ;
   --header-hover-font-color: #E5E5E5;
 
-  --profile-picture-size: 45vh;
+  --profile-picture-size: 350px;
   --profile-picture-max-size: 350px;
   --profile-picture-border-size: 10px;
 
@@ -75,13 +83,15 @@ html{
   background: white;
   color: #51A3A3;
   border: 1px solid #0B7A75;
+  border: 1px solid #1a936f;
 }
 .github-class:hover{
   /* border: 1px solid #0B7A75;
   background: #51A3A3 !important;
   color:0B7A75 !important; */
   background: #0B7A75 !important;
-  color: white;
+  background: #1a936f !important;
+  color: white !important;
 }
 
 

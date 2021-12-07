@@ -28,7 +28,8 @@ const SocialMediaIcon = styled.a`
   flex-direction: column;
   align-items: center;
   font-size: 16px;
-  border: 1px solid var(--header-border-color);
+  border: 2px solid var( --header-background-color-main-2);
+  border: 2px solid var(--header-border-color);
   border-radius: 5px;
   // background: var(--header-background-color);
   // background: transparent;
@@ -109,7 +110,7 @@ export const HeaderCenter = styled.div`
   padding: 20px;
   height: 100vh;
   position: relative;
-  
+
   :after {
     content:'';
     top:0;
@@ -125,7 +126,8 @@ export const HeaderCenter = styled.div`
     background-image: linear-gradient(45deg,  rgba(143,188,143, 0.75) , rgba(143,188,143, 0.75) );
     background-image: linear-gradient(45deg, rgba(255,255,255, 0.75) , rgba(50, 67, 118, 0.75) );
     background-image: linear-gradient(225deg, rgba(255, 255, 255, 0.75) , rgba(32,178,170, 0.75));
-    background-image: linear-gradient(225deg, var(--header-background-color-main-1), var(--header-background-color-main-2) );
+    background-image: linear-gradient(180deg, var(--header-background-color-main-1) 10%, var(--header-background-color-main-3) ,var(--header-background-color-main-2) );
+    background-image: linear-gradient(225deg, var(--header-background-color-main-1) 10%, var(--header-background-color-main-3) );
     //   animation: slide 10s infinite;
     
     //   background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 65%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%);

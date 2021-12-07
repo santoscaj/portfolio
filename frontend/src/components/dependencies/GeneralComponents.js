@@ -36,7 +36,7 @@ border-radius: 5px;
 border:1px solid var(--block-border-color);  
 padding: 10px 50px;
 margin: 10px 5px;
-transition: 0.3s;
+transition: 0.2s;
 :hover{
   background: rgb(0,0,255,0.01);
   border: 1px solid var(--header-background-color-main-1);  
@@ -70,9 +70,13 @@ const MainTitle = styled.div`
   padding: 40px 5px 5px 5px;
   margin: auto;
   background: white;
+  font-family: 'Cinzel', serif;
   font-size: 30px;
   font-weight: 700;
+  color: var(--header-background-color-main-1);
+  font-style: italic;
   border-bottom: 1px solid darkblue;
+  box-shadow: 0px 1px 35px -30px rgba(78,177,255,0.5)  ;
   max-width: 1300px;
 
   
